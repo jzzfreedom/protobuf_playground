@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package camera;
+
+enum camera_type {
+    forward_narrow = 0;
+    forward_wide = 1;
+    backward_narrow = 2;
+    left = 3;
+    right = 4;
+    interior = 5;
+  }
+
+message CameraData {
+  int32 origin_width = 1;
+  int32 origin_height = 2;
+  int32 compressed_width = 3;
+  int32 compressed_height = 4;
+
+  camera_type camera = 5;
+  
+  bool recording = 6;
+  bool showing_AE_ROI = 7;
+
+  bytes byte_buffer = 8;
+}
+
+message CameraOrder {
+  camera_type camera_request = 1;
+  bool show_AE_ROI = 2;
+  bool forward_narrow_start_recording = 21;
+  bool forward_wide_start_recording = 22;
+  bool backward_narrow_start_recording = 23;
+  bool left_start_recording = 24;
+  bool right_start_recording = 25;
+  bool interior_start_recording = 26;
+}
